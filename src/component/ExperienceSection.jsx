@@ -1,21 +1,29 @@
-'use client';
-import { motion } from 'framer-motion';
-import { BriefcaseBusiness } from 'lucide-react';
+"use client";
+import { motion } from "framer-motion";
+import { BriefcaseBusiness } from "lucide-react";
 
 const experiences = [
   {
-    title: 'Frontend Developer',
-    company: 'Tim Saya Oy-IT',
-    period: '2023 - Present',
+    title: "Frontend Developer",
+    company: "Tim Saya Oy-IT",
+    period: "2023 - Present",
     description:
-      'Membangun dan merancang antarmuka pengguna interaktif dengan pendekatan terminal-style. Fokus pada performa, animasi Framer Motion, dan pengalaman UX yang solid.',
+      "Membangun dan merancang antarmuka pengguna interaktif dengan pendekatan terminal-style. Fokus pada performa, animasi Framer Motion, dan pengalaman UX yang solid.",
   },
   {
-    title: 'Freelancer & UI/UX Designer',
-    company: 'Independent',
-    period: '2021 - 2023',
+    title: "Freelancer & UI/UX Designer",
+    company: "Independent",
+    period: "2021 - 2023",
     description:
-      'Mengerjakan berbagai proyek desain antarmuka dan pengembangan web custom untuk klien individu dan startup kecil.',
+      "Mengerjakan berbagai proyek desain antarmuka dan pengembangan web custom untuk klien individu dan startup kecil.",
+  },
+  {
+    title: "Simple Project AI",
+    company: "Independent",
+    period: "2024 - present",
+    description:
+      "Proyek eksperimen AI sederhana sebagai sarana latihan. Meski masih tahap awal, sistem dirancang agar dapat terus belajar dan berkembang dari kontribusi data yang diberikan pengguna ke depannya.",
+    link: "https://simple-project-gold.vercel.app/",
   },
 ];
 
@@ -34,22 +42,30 @@ export default function ExperienceSection() {
         className="relative z-10 font-mono"
       >
         <h2 className="text-3xl md:text-5xl font-bold text-yellow-400 mb-12 tracking-wider glitch-text flex items-center gap-3">
-          <BriefcaseBusiness className="w-8 h-8 text-yellow-400 animate-pulse" /> ~/experience
+          <BriefcaseBusiness className="w-8 h-8 text-yellow-400 animate-pulse" />{" "}
+          ~/experience
         </h2>
 
         <div className="space-y-8">
           {experiences.map((exp, idx) => (
-            <div
-              key={idx}
-              className="border-l-4 border-yellow-400 pl-6 relative group hover:bg-white/5 transition"
-            >
-              <div className="text-green-500 text-sm">{exp.period}</div>
-              <div className="text-xl font-bold text-white mt-1">{exp.title}</div>
-              <div className="text-yellow-400 text-sm mb-2">{exp.company}</div>
-              <p className="text-neutral-300 text-sm leading-relaxed">
-                {exp.description}
-              </p>
-            </div>
+              <a
+                key={idx}
+                className="block border-l-4 border-yellow-400 pl-6 relative group hover:bg-white/5 transition"
+                href={exp.link && exp.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="text-green-500 text-sm">{exp.period}</div>
+                <div className="text-xl font-bold text-white mt-1">
+                  {exp.title}
+                </div>
+                <div className="text-yellow-400 text-sm mb-2">
+                  {exp.company}
+                </div>
+                <p className="text-neutral-300 text-sm leading-relaxed">
+                  {exp.description}
+                </p>
+              </a>
           ))}
         </div>
       </motion.div>

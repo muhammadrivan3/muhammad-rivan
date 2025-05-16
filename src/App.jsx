@@ -5,6 +5,7 @@ import About from './component/About'
 import SkillsSection from './component/SkillsSection'
 import ExperienceSection from './component/ExperienceSection'
 import Contact from './component/Contact'
+import { motion } from "framer-motion";
 
 function App() {
 
