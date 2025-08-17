@@ -3,6 +3,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next"
 export const metadata: Metadata = {
   title: "MUHAMMAD RIVAN",
   description: "Portfolio of Muhammad Rivan, a web developer specializing in modern web applications.",
@@ -23,6 +24,7 @@ export default function RootLayout({
           <Sonner />
           {children}
         </TooltipProvider>
+        {/* <Analytics /> */}
       </body>
     </html>
   );

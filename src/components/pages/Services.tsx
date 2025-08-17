@@ -45,11 +45,11 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
     <motion.div
       ref={cardRef}
       whileHover={{ y: -10, rotateY: 5 }}
-      className="card-premium group cursor-pointer"
+      className="bg-card p-5 group cursor-pointer rounded-2xl"
     >
       {/* Icon */}
       <div className="relative mb-6">
-        <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
           <IconComponent className="w-8 h-8 text-white" />
         </div>
         

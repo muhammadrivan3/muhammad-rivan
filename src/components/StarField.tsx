@@ -63,7 +63,7 @@ const MovingStars = () => {
 
 export const StarField = () => {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 w-full min-h-screen">
       <Canvas 
         camera={{ position: [0, 0, 1] }}
         gl={{

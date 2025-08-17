@@ -4,12 +4,11 @@ import { motion,  useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
-   Zap,  Globe, 
-    Monitor, 
+   Zap,  Globe,
    Trophy, Rocket,  CheckCircle,
   Calendar,  Layers, 
 } from 'lucide-react';
-import { Skills3D } from '../Skills3D';
+// import { Skills3D } from '../Skills3D';
 // import InteractiveTimeline from '@/components/InteractiveTimeline';
 import { portfolioData } from '../../data/portfolio';
 
@@ -218,8 +217,8 @@ export const About = () => {
     offset: ["start end", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.8]);
+  // const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.8]);
 
   // const stats = [
   //   { icon: Award, label: 'Awards Won', value: '15', suffix: '+' },
@@ -234,14 +233,14 @@ export const About = () => {
   return (
     <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden">
       {/* Dynamic background with parallax */}
-      <motion.div 
+      {/* <motion.div 
         className="absolute inset-0"
         style={{ y, opacity }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-primary/5" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      </motion.div>
+      </motion.div> */}
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Hero Section */}
@@ -320,13 +319,13 @@ export const About = () => {
               </div>
 
               {/* 3D Skills Visualization */}
-              <div>
+              {/* <div>
                 <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
                   <Monitor className="w-8 h-8 text-primary" />
                   3D Skills Visualization
                 </h3>
                 <Skills3D />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

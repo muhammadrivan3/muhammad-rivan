@@ -155,7 +155,7 @@ export const Portfolio = () => {
   }, []);
 
   return (
-    <section id="work" ref={sectionRef} className="py-24 bg-gradient-to-b from-background to-muted/20">
+    <section id="work" ref={sectionRef} className="py-24 ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="portfolio-header text-center mb-16">
           <motion.div

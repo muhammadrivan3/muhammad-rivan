@@ -132,7 +132,7 @@ export const Contact = () => {
       </div>
       
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
+      {/* <div className="absolute inset-0 bg-gradient-mesh opacity-20" /> */}
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}

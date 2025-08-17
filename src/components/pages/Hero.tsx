@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Eye, Mail, Github, Linkedin, Twitter } from "lucide-react";
 import { gsap } from "gsap";
-import { ThreeBackground } from "../ThreeBackground";
-import { StarField } from "../StarField";
+// import { ThreeBackground } from "../ThreeBackground";
+// import { StarField } from "../StarField";
 import { portfolioData } from "../../data/portfolio";
 import mr from "@/assets/img/mr.webp";
 import Image from "next/image";
@@ -18,7 +18,7 @@ export const Hero = ({ onReady }: HeroProps) => {
   const photoRef = useRef<HTMLDivElement>(null);
    // State untuk melacak kesiapan elemen-elemen internal
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [isThreeReady, setIsThreeReady] = useState(false); // Kita asumsikan ThreeBackground akan memberi sinyal
+  // const [isThreeReady, setIsThreeReady] = useState(false); // Kita asumsikan ThreeBackground akan memberi sinyal
 
 
   useEffect(() => {
@@ -66,11 +66,16 @@ export const Hero = ({ onReady }: HeroProps) => {
   useEffect(() => {
     // Jika gambar DAN background 3D sudah siap,
     // dan fungsi onReady ada, panggil fungsi tersebut.
-    if (isImageLoaded && isThreeReady && onReady) {
+    // if (isImageLoaded && isThreeReady && onReady) {
+    //   // console.log("Hero is ready, telling HomePage to hide loader.");
+    //   onReady();
+    // }
+
+    if (isImageLoaded && onReady) {
       // console.log("Hero is ready, telling HomePage to hide loader.");
       onReady();
     }
-  }, [isImageLoaded, isThreeReady, onReady]);
+  }, [isImageLoaded,  onReady]);
   const scrollToWork = () => {
     const workSection = document.querySelector("#work");
     if (workSection) {
@@ -91,10 +96,9 @@ export const Hero = ({ onReady }: HeroProps) => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background Layers */}
-      <StarField />
-      <div className="absolute inset-0 bg-gradient-mesh opacity-20" />
-      <ThreeBackground interactive={true} onReady={() => setIsThreeReady(true)}/>
+      
+      {/* <div className="absolute inset-0 bg-gradient-mesh opacity-20" /> */}
+      {/* <ThreeBackground interactive={true} onReady={() => setIsThreeReady(true)}/> */}
 
       {/* Content Container */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 py-20">
@@ -202,7 +206,7 @@ export const Hero = ({ onReady }: HeroProps) => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             {/* Background Elements */}
-            <div className="absolute inset-0 bg-gradient-primary rounded-full blur-3xl opacity-20 scale-150" />
+            <div className="absolute inset-0 bg-gradient-primary rounded-full blur-3xl opacity-20 scale-125" />
             <div className="absolute inset-0 bg-gradient-accent rounded-full blur-2xl opacity-10 scale-125" />
             
             {/* Photo Container */}

@@ -6,6 +6,7 @@ import { Footer } from "../Footer";
 import { Hero } from "./Hero";
 import { CustomCursor } from "../ui/CustomCursor";
 import dynamic from "next/dynamic";
+import { StarField } from "../StarField";
 
 // Lazy load heavy components
 const About = dynamic(() => import("./About"), { ssr: false });
@@ -59,6 +60,8 @@ const HomePage = () => {
     <div className="min-h-screen bg-background text-foreground cursor-none w-full overflow-x-hidden">
       <CustomCursor />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
+      {/* Animated Background Layers */}
+      
       {!isAppReady && (
           <motion.div
             key="loader"
@@ -82,6 +85,9 @@ const HomePage = () => {
           transition={{ duration: 0.5 }}
           className="relative"
         >
+          <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
+        <StarField />
+      </div>
           <Hero onReady={handleAppReady} />
           <About/>
           <PortfolioSection />
