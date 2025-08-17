@@ -119,7 +119,7 @@ const InteractiveSkills = () => {
   
   return (
     <div className="space-y-8">
-      <h3 className="text-3xl font-bold mb-8 text-center">Interactive Skills Dashboard</h3>
+      {/* <h3 className="text-3xl font-bold mb-8 text-center">Interactive Skills Dashboard</h3> */}
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {skills.map((skill, index) => (
@@ -158,7 +158,7 @@ const InteractiveSkills = () => {
                   <span className="text-xs text-muted-foreground">{skill.category}</span>
                 </div>
                 
-                {hoveredSkill === index && (
+                {/* {hoveredSkill === index && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ const InteractiveSkills = () => {
                   >
                     Click to explore {skill.name}
                   </motion.div>
-                )}
+                )} */}
               </div>
             </motion.div>
           </motion.div>
@@ -201,11 +201,11 @@ const PersonalInfo = () => (
       </div>
       <div className="flex items-center gap-3">
         <Zap className="w-5 h-5 text-primary" />
-        <span className="text-muted-foreground">8+ Years Experience</span>
+        <span className="text-muted-foreground">5+ Years Experience</span>
       </div>
       <div className="flex items-center gap-3">
         <Rocket className="w-5 h-5 text-primary" />
-        <span className="text-muted-foreground">100+ Projects Delivered</span>
+        <span className="text-muted-foreground">30+ Projects Delivered</span>
       </div>
     </div>
   </motion.div>

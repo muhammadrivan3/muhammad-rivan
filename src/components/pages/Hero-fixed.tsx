@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Eye, Mail, Github, Linkedin, Twitter } from "lucide-react";
@@ -16,12 +16,18 @@ type HeroProps = {
 export const Hero = ({ onReady }: HeroProps) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
-   // State untuk melacak kesiapan elemen-elemen internal
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [isThreeReady, setIsThreeReady] = useState(false); // Kita asumsikan ThreeBackground akan memberi sinyal
+  const [isThreeReady, setIsThreeReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // Prevent hydration issues by ensuring client-side only features run after mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+
     const ctx = gsap.context(() => {
       // Animate photo reveal
       gsap.fromTo(
@@ -62,28 +68,69 @@ export const Hero = ({ onReady }: HeroProps) => {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [mounted]);
+
   useEffect(() => {
-    // Jika gambar DAN background 3D sudah siap,
-    // dan fungsi onReady ada, panggil fungsi tersebut.
-    if (isImageLoaded && isThreeReady && onReady) {
-      // console.log("Hero is ready, telling HomePage to hide loader.");
+    if (isImageLoaded && isThreeReady && onReady && mounted) {
       onReady();
     }
-  }, [isImageLoaded, isThreeReady, onReady]);
+  }, [isImageLoaded, isThreeReady, onReady, mounted]);
+
   const scrollToWork = () => {
-    const workSection = document.querySelector("#work");
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: "smooth" });
+    if (typeof window !== 'undefined') {
+      const workSection = document.querySelector("#work");
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
   const downloadResume = () => {
-    const link = document.createElement("a");
-    link.href = portfolioData.personal.resumeUrl;
-    link.download = "Cv_MR_en.pdf";
-    link.click();
+    if (typeof window !== 'undefined') {
+      const link = document.createElement("a");
+      link.href = portfolioData.personal.resumeUrl;
+      link.download = "Cv_MR_en.pdf";
+      link.click();
+    }
   };
+
+  // Render a simplified version during SSR to prevent hydration issues
+  if (!mounted) {
+    return (
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div className="relative z-20 max-w-7xl mx-auto px-6 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="text-left space-y-8">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <span className="text-gradient-primary">Muhammad</span>
+                <br />
+                <span className="text-foreground">Rivan</span>
+              </h1>
+              <h2 className="text-2xl md:text-3xl text-muted-foreground font-light">
+                {portfolioData.personal.title}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+                {portfolioData.personal.tagline}
+              </p>
+            </div>
+            <div className="relative flex items-center justify-center">
+              <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden">
+                <Image
+                  src={mr}
+                  alt="Muhammad Rivan"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -115,7 +162,7 @@ export const Hero = ({ onReady }: HeroProps) => {
               transition={{ delay: 0.2 }}
             >
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              <span>Available for hire</span>
+              Available for hire
             </motion.div>
 
             {/* Main Title */}
@@ -217,13 +264,13 @@ export const Hero = ({ onReady }: HeroProps) => {
                 <Image
                   src={mr}
                   alt="Muhammad Rivan"
-                  className="object-cover "
+                  className="object-cover"
                   priority
                   onLoad={() => setIsImageLoaded(true)}
                 />
                 
                 {/* Overlay Gradient */}
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" /> */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
               
               {/* Floating Elements */}

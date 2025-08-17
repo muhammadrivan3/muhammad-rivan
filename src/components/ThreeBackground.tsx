@@ -147,9 +147,10 @@ const FloatingGeometry = ({ position, mousePosition }: {
 interface ThreeBackgroundProps {
   className?: string;
   interactive?: boolean;
+  onReady?: () => void;
 }
 
-export const ThreeBackground = ({ className = "", interactive = true }: ThreeBackgroundProps) => {
+export const ThreeBackground = ({ className = "", interactive = true, onReady }: ThreeBackgroundProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback((event: React.MouseEvent) => {
@@ -192,6 +193,10 @@ export const ThreeBackground = ({ className = "", interactive = true }: ThreeBac
           // Set pixel ratio based on device capabilities
           const maxPixelRatio = Math.min(window.devicePixelRatio, 1.5);
           gl.setPixelRatio(maxPixelRatio);
+          // Call onReady prop when the canvas is created and ready
+          if (onReady) {
+            onReady();
+          }
         }}
       >
         <WebGLContextHandler />

@@ -64,7 +64,7 @@ export const CustomCursor = () => {
     // Enhanced hover detection
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const isInteractive = target.closest('button, a, input, textarea, [role="button"], .interactive, .cursor-pointer');
+      const isInteractive = target.closest('img, span, button, a, input, textarea, [role="button"], .interactive, .cursor-pointer');
       setIsHovering(!!isInteractive);
     };
 
@@ -101,7 +101,7 @@ export const CustomCursor = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
               opacity: 1, 
-              scale: isHovering ? 1.5 : 1,
+              scale: isHovering ? 2.5 : 1,
               transition: { duration: 0.2 }
             }}
             exit={{ opacity: 0, scale: 0 }}
