@@ -6,7 +6,7 @@ import { Footer } from "../Footer";
 import { Hero } from "./Hero";
 import { CustomCursor } from "../ui/CustomCursor";
 import dynamic from "next/dynamic";
-// import { StarField } from "../StarField";
+import { StarField } from "../StarField";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 // Lazy load heavy components
@@ -88,13 +88,13 @@ const HomePage = () => {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          {/* <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
+          <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
             <StarField />
-          </div> */}
+          </div>
           <Hero onReady={handleAppReady} />
-          <About />
+          {/* <About />
           <PortfolioSection />
-          <Services />
+          <Services /> */}
           {/* <Testimonials /> */}
           <Contact />
         </motion.main>

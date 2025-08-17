@@ -65,7 +65,7 @@ const MovingStars = ({ count }: { count: number }) => {
 export const StarField = () => {
   
   const isMobile = useIsMobile();
-  const starCount = isMobile ? 500 : 1000;
+  const starCount = isMobile ? 1000 : 1500;
   return (
     <div className="absolute inset-0 z-0 w-full min-h-screen">
       <Canvas 
