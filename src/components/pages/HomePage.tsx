@@ -6,11 +6,12 @@ import { Footer } from "../Footer";
 import { Hero } from "./Hero";
 import { CustomCursor } from "../ui/CustomCursor";
 import dynamic from "next/dynamic";
-import { StarField } from "../StarField";
+// import { StarField } from "../StarField";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Lazy load heavy components
 const About = dynamic(() => import("./About"), { ssr: false });
-const PortfolioSection = dynamic(() => import("./Portfolio"));
+const PortfolioSection = dynamic(() => import("./Portfolio"), { ssr: false });
 const Services = dynamic(() => import("./Services"));
 const Contact = dynamic(() => import("./Contact"));
 
@@ -18,6 +19,7 @@ const HomePage = () => {
   const [isDark, setIsDark] = useState(false);
   const [isAppReady, setIsAppReady] = useState(false);
   const [mounted, setMounted] = useState(false);
+    const isMobile = useIsMobile();
   useEffect(() => {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem("theme");
@@ -58,7 +60,8 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground cursor-none w-full overflow-x-hidden">
-      <CustomCursor />
+      {!isMobile && <CustomCursor/>}
+      {/* <CustomCursor/> */}
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       {/* Animated Background Layers */}
 
@@ -85,9 +88,9 @@ const HomePage = () => {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
+          {/* <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
             <StarField />
-          </div>
+          </div> */}
           <Hero onReady={handleAppReady} />
           <About />
           <PortfolioSection />
