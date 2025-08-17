@@ -4,15 +4,16 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Preload } from '@react-three/drei';
 import * as THREE from 'three';
 import { WebGLContextHandler } from './WebGLContextHandler';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-const MovingStars = () => {
+const MovingStars = ({ count }: { count: number }) => {
   const ref = useRef<THREE.Points>(null);
-  
+  // const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(2000 * 3);
     const colors = new Float32Array(2000 * 3);
     
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 0; i < count; i++) {
       // Random sphere distribution
       const radius = Math.random() * 25 + 5;
       const theta = Math.random() * Math.PI * 2;
@@ -62,6 +63,9 @@ const MovingStars = () => {
 };
 
 export const StarField = () => {
+  
+  const isMobile = useIsMobile();
+  const starCount = isMobile ? 500 : 1000;
   return (
     <div className="absolute inset-0 z-0 w-full min-h-screen">
       <Canvas 
@@ -69,7 +73,7 @@ export const StarField = () => {
         gl={{
           antialias: false,
           alpha: true,
-          powerPreference: "high-performance",
+          powerPreference: isMobile ? "low-power" : "high-performance",
           failIfMajorPerformanceCaveat: false
         }}
         dpr={[1, 1.5]}
@@ -80,7 +84,7 @@ export const StarField = () => {
       >
         <WebGLContextHandler />
         <Suspense fallback={null}>
-          <MovingStars />
+          <MovingStars  count={starCount}/>
           <Preload all />
         </Suspense>
       </Canvas>

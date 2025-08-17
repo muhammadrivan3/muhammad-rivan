@@ -1,5 +1,5 @@
 "use client";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navigation } from "../Navigation";
 import { Footer } from "../Footer";
@@ -10,7 +10,7 @@ import { StarField } from "../StarField";
 
 // Lazy load heavy components
 const About = dynamic(() => import("./About"), { ssr: false });
-const PortfolioSection = dynamic(() => import('./Portfolio'));
+const PortfolioSection = dynamic(() => import("./Portfolio"));
 const Services = dynamic(() => import("./Services"));
 const Contact = dynamic(() => import("./Contact"));
 
@@ -28,7 +28,7 @@ const HomePage = () => {
     if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
       setIsDark(true);
       document.documentElement.classList.add("dark");
-    }else {
+    } else {
       document.documentElement.classList.remove("dark");
     }
     setMounted(true);
@@ -52,8 +52,8 @@ const HomePage = () => {
     }, 1000);
   };
 
-  if (!mounted){
-    return (<div className="min-h-screen w-full bg-background"></div>);
+  if (!mounted) {
+    return <div className="min-h-screen w-full bg-background"></div>;
   }
 
   return (
@@ -61,23 +61,23 @@ const HomePage = () => {
       <CustomCursor />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       {/* Animated Background Layers */}
-      
+
       {!isAppReady && (
-          <motion.div
-            key="loader"
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 bg-background flex items-center justify-center z-50"
-          >
-            {/* Ambil JSX loading screen kamu yang sebelumnya */}
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-primary rounded-2xl animate-pulse mb-4 mx-auto" />
-              <p className="text-muted-foreground mt-4 font-medium">
-                Preparing Experience...
-              </p>
-            </div>
-          </motion.div>
-        )}
+        <motion.div
+          key="loader"
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 bg-background flex items-center justify-center z-50"
+        >
+          {/* Ambil JSX loading screen kamu yang sebelumnya */}
+          <div className="text-center">
+            <div className="w-16 h-16 bg-gradient-primary rounded-2xl animate-pulse mb-4 mx-auto" />
+            <p className="text-muted-foreground mt-4 font-medium">
+              Preparing Experience...
+            </p>
+          </div>
+        </motion.div>
+      )}
       <AnimatePresence mode="wait">
         <motion.main
           initial={{ opacity: 0 }}
@@ -86,18 +86,16 @@ const HomePage = () => {
           className="relative"
         >
           <div className="fixed inset-0 z-0 w-full min-h-screen overflow-hidden">
-        <StarField />
-      </div>
+            <StarField />
+          </div>
           <Hero onReady={handleAppReady} />
-          <About/>
+          <About />
           <PortfolioSection />
-          <Services/>
+          <Services />
           {/* <Testimonials /> */}
-          <Contact/>
+          <Contact />
         </motion.main>
       </AnimatePresence>
-
-      
 
       <Footer />
     </div>
