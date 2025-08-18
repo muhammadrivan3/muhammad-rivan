@@ -144,9 +144,9 @@ const InteractiveSkills = () => {
         {skills.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="relative group cursor-pointer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="relative group cursor-pointer h-full w-full"
+            initial={{ opacity: 1, y: 0 }}
+            // whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             onMouseEnter={() => setHoveredSkill(index)}
             onMouseLeave={() => setHoveredSkill(null)}

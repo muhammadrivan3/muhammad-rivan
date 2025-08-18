@@ -12,7 +12,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Lazy load heavy components
 const About = dynamic(() => import("./About"), { ssr: false });
 const PortfolioSection = dynamic(() => import("./Portfolio"), { ssr: false });
-const Services = dynamic(() => import("./Services"));
+const Services = dynamic(() => import("./Services"), { ssr: false });
 const Contact = dynamic(() => import("./Contact"));
 
 const HomePage = () => {
