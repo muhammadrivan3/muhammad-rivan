@@ -1,8 +1,8 @@
 
 import {  useRef, useState } from 'react';
 import { motion,  useScroll } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
    Zap,  Globe,
    Trophy, Rocket,  CheckCircle,
@@ -12,7 +12,7 @@ import {
 // import InteractiveTimeline from '@/components/InteractiveTimeline';
 import { portfolioData } from '../../data/portfolio';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 
 const containerVariants = {
@@ -81,10 +81,10 @@ const InteractiveJourney = () => {
   return (
     <motion.div
       className="relative"
-      variants={containerVariants}
-      initial="visible"
+      // variants={containerVariants}
+      // initial="visible"
       // whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }} // Pemicu animasi saat 50% dari kontainer terlihat
+      // viewport={{ once: true, amount: 0.5 }} // Pemicu animasi saat 50% dari kontainer terlihat
     >
       <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-accent to-primary rounded-full" />
       
@@ -232,10 +232,10 @@ const PersonalInfo = () => (
 
 export const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: sectionRef,
+  //   offset: ["start end", "end start"]
+  // });
   
   const achievements = portfolioData.about.achievements;
 
