@@ -24,7 +24,7 @@ export default function RootLayout({
           <Sonner />
           {children}
         </TooltipProvider>
-        {/* <Analytics /> */}
+        <Analytics />
       </body>
     </html>
   );

@@ -1,38 +1,14 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Testimonials3D } from '../Testimonials3D';
 import { portfolioData } from '../../data/portfolio';
 
-gsap.registerPlugin(ScrollTrigger);
 
 export const Testimonials = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo('.testimonials-header',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+  
   return (
-    <section id="testimonials" ref={sectionRef} className="py-24 bg-muted/20">
+    <section id="testimonials" className="py-24 bg-muted/20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="testimonials-header text-center mb-16">

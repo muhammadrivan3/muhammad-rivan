@@ -95,10 +95,6 @@ const HomePage = () => {
           <About />
           <PortfolioSection />
           <Services />
-          {/* <About />
-          <PortfolioSection />
-          <Services /> */}
-          {/* <Testimonials /> */}
           <Contact />
         </motion.main>
       </AnimatePresence>

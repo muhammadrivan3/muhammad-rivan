@@ -1,13 +1,8 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence,  Variants } from 'framer-motion';
 import { ExternalLink, Github, Filter, Search } from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { portfolioData, projectCategories } from '../../data/portfolio';
 import { Project } from '../../types/portfolio';
-
-gsap.registerPlugin(ScrollTrigger);
-
 // Varian animasi untuk item kartu, digunakan oleh Framer Motion
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 15, scale: 0.99 },
@@ -105,7 +100,6 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 };
 
 export const Portfolio = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -128,28 +122,10 @@ export const Portfolio = () => {
     return filtered;
   }, [activeFilter, searchTerm]);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo('.portfolio-header',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <section id="work" ref={sectionRef} className="py-24 ">
+    <section id="work" className="py-24 ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="portfolio-header text-center mb-16">
           <motion.div

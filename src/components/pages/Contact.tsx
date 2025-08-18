@@ -1,13 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter } from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ContactSpace } from '../ContactSpace';
 import { portfolioData } from '../../data/portfolio';
 import { useToast } from '../../hooks/use-toast';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,44 +16,6 @@ export const Contact = () => {
   
   const sectionRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate form elements
-      gsap.fromTo('.contact-form-element',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // Animate contact info
-      gsap.fromTo('.contact-info-item',
-        { x: -50, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,14 +83,11 @@ export const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden">
       {/* 3D Space Background */}
       <div className="absolute inset-0 opacity-30">
         <ContactSpace />
       </div>
-      
-      {/* Background */}
-      {/* <div className="absolute inset-0 bg-gradient-mesh opacity-20" /> */}
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}

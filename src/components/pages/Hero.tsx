@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Eye, Mail, Github, Linkedin, Twitter } from "lucide-react";
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 // import { ThreeBackground } from "../ThreeBackground";
 // import { StarField } from "../StarField";
 import { portfolioData } from "../../data/portfolio";
@@ -14,55 +14,14 @@ type HeroProps = {
 };
 
 export const Hero = ({ onReady }: HeroProps) => {
-  const heroRef = useRef<HTMLDivElement>(null);
+  // const heroRef = useRef<HTMLDivElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
    // State untuk melacak kesiapan elemen-elemen internal
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   // const [isThreeReady, setIsThreeReady] = useState(false); // Kita asumsikan ThreeBackground akan memberi sinyal
 
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate photo reveal
-      gsap.fromTo(
-        ".photo-reveal",
-        { scale: 0.8, opacity: 0, rotation: -10 },
-        {
-          scale: 1,
-          opacity: 1,
-          rotation: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          delay: 0.3,
-        }
-      );
-
-      // Animate text elements
-      gsap.fromTo(
-        ".text-reveal",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          delay: 0.6,
-        }
-      );
-
-      // Floating animation for subtle movement
-      gsap.to(".float-subtle", {
-        y: -15,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+ 
   useEffect(() => {
     // Jika gambar DAN background 3D sudah siap,
     // dan fungsi onReady ada, panggil fungsi tersebut.
@@ -93,12 +52,9 @@ export const Hero = ({ onReady }: HeroProps) => {
   return (
     <section
       id="home"
-      ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       
-      {/* <div className="absolute inset-0 bg-gradient-mesh opacity-20" /> */}
-      {/* <ThreeBackground interactive={true} onReady={() => setIsThreeReady(true)}/> */}
 
       {/* Content Container */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 py-20">

@@ -2,11 +2,7 @@
 import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Box, Palette, Lightbulb, ArrowRight, Check } from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { portfolioData } from '../../data/portfolio';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const iconMap = {
   Code,
@@ -16,34 +12,13 @@ const iconMap = {
 };
 
 const ServiceCard = ({ service, index }: { service: any; index: number }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  
   const IconComponent = iconMap[service.icon as keyof typeof iconMap];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(cardRef.current,
-        { y: 100, opacity: 0, rotateX: 20 },
-        {
-          y: 0,
-          opacity: 1,
-          rotateX: 0,
-          duration: 1,
-          delay: index * 0.2,
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }, cardRef);
 
-    return () => ctx.revert();
-  }, [index]);
 
   return (
     <motion.div
-      ref={cardRef}
       whileHover={{ y: -10, rotateY: 5 }}
       className="bg-card p-5 group cursor-pointer rounded-2xl"
     >
@@ -101,42 +76,10 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
 };
 
 export const Services = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header animation
-      gsap.fromTo('.services-header',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // Background parallax
-      gsap.to('.services-bg', {
-        y: -100,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 relative overflow-hidden">
+    <section id="services" className="py-24 relative overflow-hidden">
       {/* Background */}
       <div className="services-bg absolute inset-0">
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
