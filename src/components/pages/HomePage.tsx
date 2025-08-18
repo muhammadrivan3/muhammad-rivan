@@ -92,6 +92,7 @@ const HomePage = () => {
             <StarField />
           </div>
           <Hero onReady={handleAppReady} />
+          <About />
           {/* <About />
           <PortfolioSection />
           <Services /> */}

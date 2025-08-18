@@ -14,22 +14,6 @@ import { portfolioData } from '../../data/portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2, // Mengatur jeda 0.2 detik antar animasi anak
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-};
-
 // Enhanced Interactive Timeline Component
 const InteractiveJourney = () => {
   const [activeYear, setActiveYear] = useState<string | null>(null);
@@ -79,20 +63,16 @@ const InteractiveJourney = () => {
   ];
 
   return (
-    <motion.div
-      className="relative"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }} // Pemicu animasi saat 50% dari kontainer terlihat
-    >
+    <div className="relative">
       <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-accent to-primary rounded-full" />
       
       {journeyData.map((item, index) => (
         <motion.div
           key={item.year}
           className="relative pl-16 mb-12"
-          variants={itemVariants}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.2 }}
         >
           <motion.div
             className="absolute -left-3 top-2 w-6 h-6 rounded-full bg-gradient-to-r from-primary to-accent border-4 border-background cursor-pointer"
@@ -125,7 +105,7 @@ const InteractiveJourney = () => {
           </motion.div>
         </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
