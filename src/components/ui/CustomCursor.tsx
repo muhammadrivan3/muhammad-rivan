@@ -101,7 +101,7 @@ export const CustomCursor = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ 
               opacity: 1, 
-              scale: isHovering ? 2.5 : 1,
+              scale: isHovering ? 3 : 1,
               transition: { duration: 0.2 }
             }}
             exit={{ opacity: 0, scale: 0 }}

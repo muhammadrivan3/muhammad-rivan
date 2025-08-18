@@ -82,8 +82,8 @@ const InteractiveJourney = () => {
     <motion.div
       className="relative"
       variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
+      initial="visible"
+      // whileInView="visible"
       viewport={{ once: true, amount: 0.5 }} // Pemicu animasi saat 50% dari kontainer terlihat
     >
       <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-accent to-primary rounded-full" />

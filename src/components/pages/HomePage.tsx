@@ -93,6 +93,8 @@ const HomePage = () => {
           </div>
           <Hero onReady={handleAppReady} />
           <About />
+          <PortfolioSection />
+          <Services />
           {/* <About />
           <PortfolioSection />
           <Services /> */}

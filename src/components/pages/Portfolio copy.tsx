@@ -3,6 +3,7 @@ import { motion, AnimatePresence,  Variants } from 'framer-motion';
 import { ExternalLink, Github, Filter, Search } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { Portfolio3D } from '../Portfolio3D';
 import { portfolioData, projectCategories } from '../../data/portfolio';
 import { Project } from '../../types/portfolio';
 
@@ -16,25 +17,48 @@ const cardVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      delay: Math.min(i * 0.1, 0.5), // Cap delay to prevent long waits
+      type: "tween", // Mengubah tipe menjadi 'tween'
+      duration: 0.6, // Durasi animasi (misalnya, 0.6 detik)
+      ease: "easeOut", // Kurva easing untuk transisi yang mulus ke akhir
+      delay: i * 0.15, // Stagger antar kartu tetap sama
     },
   }),
-  
+  exit: { opacity: 0, y: -20, scale: 0.9, transition: { duration: 0.25 } },
 };
 
 // Separate ProjectCard component
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  // const cardRef = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     gsap.fromTo(cardRef.current,
+  //       { y: 100, opacity: 0 },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 0.8,
+  //         delay: index * 0.1,
+  //         scrollTrigger: {
+  //           trigger: cardRef.current,
+  //           start: 'top 80%',
+  //           toggleActions: 'play none none none'
+  //         }
+  //       }
+  //     );
+  //   }, cardRef);
+
+  //   return () => ctx.revert();
+  // }, [index]);
 
   return (
     <motion.article
       layout // Mengaktifkan animasi tata letak untuk perubahan posisi
       variants={cardVariants} // Menggunakan varian animasi yang telah ditentukan
-     
-      
-     // Meneruskan index sebagai prop custom untuk delay stagger
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      custom={index} // Meneruskan index sebagai prop custom untuk delay stagger
       whileHover={{ y: -8, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }} // Efek hover dengan shadow
       className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300"
     >
@@ -172,6 +196,15 @@ export const Portfolio = () => {
             A showcase of my recent work spanning web development, 3D experiences, 
             and innovative digital solutions.
           </p>
+
+          {/* <div className="mb-16">
+            <div className="bg-card/30 backdrop-blur-sm rounded-2xl border border-border overflow-hidden">
+              <Portfolio3D />
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-4">
+              Interactive 3D visualization - hover and drag to explore projects
+            </p>
+          </div> */}
 
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {projectCategories.map((category) => (
