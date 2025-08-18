@@ -198,9 +198,6 @@ const InteractiveSkills = () => {
 // Personal Info Component
 const PersonalInfo = () => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
     className="bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm rounded-2xl p-8 border border-border/30"
   >
     <div className="flex items-center gap-6 mb-6">
@@ -231,16 +228,11 @@ const PersonalInfo = () => (
 );
 
 export const About = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  // const { scrollYProgress } = useScroll({
-  //   target: sectionRef,
-  //   offset: ["start end", "end start"]
-  // });
   
   const achievements = portfolioData.about.achievements;
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden">
+    <section id="about" className="py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Hero Section */}
         <motion.div 
